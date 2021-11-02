@@ -1,0 +1,296 @@
+<script src="https://apis.google.com/js/api.js" id="gapiScript"></script>
+<!-- include external CSS for code highlighting -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/hybrid.min.css" integrity="sha512-ZVy0y7AnokL/xGtaRaWRgLYjhywJZdJwVFWXW9oihOpDIochH8JF0xWFK+Y1WJ5wTn3rn9LPZRFjxObuzvQUaQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+</style>
+<style>
+  html,
+  body {
+    font-family: "Montserrat", sans-serif !important;
+  }
+
+  #main-outlet {
+    width: 100%;
+    height: 100%;
+    flex: 1 1;
+    box-sizing: border-box;
+  }
+
+  /* Setting max width on all forum layout */
+  .wrap {
+    max-width: 1472px;
+  }
+  .wrap {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 8px;
+  }
+
+  /* Moon Logo */
+  .d-header #site-logo {
+    height: 60px;
+  }
+
+  /* Top alerts */
+  .alert {
+    border-radius: 4px;
+  }
+
+  /* Post layout */
+  .topic-body {
+    padding: 12px 6px 12px 6px;
+    float: left;
+    position: relative;
+    border-top: 1px solid #76747445;
+   
+  }
+  .posts-wrapper {
+    background-color: #272727;
+  }
+  .topic-avatar {
+    padding-top: 15px;
+    width: 45px;
+    float: left;
+    z-index: 2;
+  }
+  
+
+  /* Real name shown on post */
+  .names span a {
+    color: #779db9;
+  }
+
+  nav.post-controls .show-replies {
+    font-weight: bold;
+  }
+
+  /* Adjustments on post stats area */
+  .topic-map h4 {
+    margin: 0;
+    font-size: 10px;
+    line-height: 16px;
+    color: #7c7c80;
+  }
+  .topic-map .map .number {
+    font-size: 18px;
+    line-height: 24px;
+    color: #fff;
+  }
+  .topic-map .map .topic-map-post {
+    margin-top: 2px;
+  }
+  .topic-map .map .topic-map-post span.relative-date {
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  span.post-count {
+    color: #7c7c80;
+    background-color: #000;
+    opacity: 1;
+  }
+
+  /* Large reply button on a post */
+  .post-controls .actions button.create {
+    border: 1px solid var(--primary-medium);
+    font-weight: bold;
+    border-radius: 3px;
+  }
+
+  /* Radius on buttons */
+  .btn {
+    border-radius: 4px;
+  }
+
+  /* User mentions */
+  a.mention,
+  a.mention-group {
+    transition: all 0.15s ease;
+    padding: 2px 6px;
+    color: #fdfdfd;
+    background: #105ba5;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.93em;
+  }
+  a.mention:hover {
+    color: #779db9;
+    text-decoration: underline;
+    color: #105ba5;
+    background: #fdfdfd;
+  }
+
+  /* Post space adjustments */
+  .topic-body .cooked {
+    
+    font-size: 16px;
+    color: rgb(181, 181, 181);
+  }
+
+  .topic-body .cooked li p {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .post-menu-area {
+    margin-top: 12px;
+  }
+
+  /* Primary buttons */
+  .btn-yellow,
+  .btn-primary {
+    color: #fff;
+    background: #779db9;
+    border-color: #779db9;
+  }
+  .btn-primary .d-icon {
+    color: inherit;
+    margin-right: 0.45em;
+    transition: color 0.25s;
+  }
+
+  /* Navigation button on homepage */
+  .nav-pills > li > a {
+    border-radius: 4px;
+  }
+
+  .nav-pills > li > a:hover {
+    color: #fff;
+    background-color: #779cb785;
+  }
+
+  .nav-pills > li.active > a,
+  .nav-pills > li > a.active {
+    color: #fff;
+    background-color: #779db9;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Restricting code blocks in width */
+  pre code {
+    max-width: 1170px;
+  }
+
+  /* Making overlays for menus darker for better contrast */
+  .select-kit.is-expanded .select-kit-body,
+  .menu-panel {
+    background: #191919;
+  }
+
+  /* Latest topics on front page */
+  .latest-topic-list-item {
+    padding: 0.66em;
+  }
+
+  /* Post styles */
+  .cooked a:not(.mention),
+  .d-editor-preview a:not(.mention) {
+    color: #698fb1;
+
+  }
+  .cooked a:not(.mention):hover,
+  .d-editor-preview a:not(.mention):hover {
+    text-decoration: underline;
+    color: #779db9;
+  }
+  .cooked strong {
+    color: #b3b3b3;
+  }
+
+  /* Hiding username next to real name in post */
+  .second.username {
+    display: none;
+  }
+
+  .small-action {
+    display: flex;
+    align-items: center;
+    max-width: initial;
+    border-top: 1px solid var(--primary-low);
+  }
+
+  /* Heart icon to like a post */
+  button.like.d-hover {
+    background: transparent !important;
+  }
+
+  /* Topic overview stats on first post */
+  .topic-map .map:first-of-type {
+    padding: 5px;
+    background: var(--blend-primary-secondary-5);
+    border-radius: 4px;
+  }
+
+  /* Quotes */
+  aside.quote .title {
+    border-left: 5px solid #595959;
+    background-color: #424242;
+    color: #bdbdbd;
+    padding: 12px 12px 1px 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  aside.quote .title,
+  aside.quote blockquote {
+    border-left-color: #779db9;
+    background-color: #232323;
+  }
+  aside.quote .title {
+    border-radius: 4px 4px 0 0;
+  }
+  aside.quote blockquote {
+    border-radius: 0 0 4px 4px;
+  }
+
+  /* Quotes posts */
+  .embedded-posts {
+    background-color: #232323;
+    background-clip: content-box;
+    width: 80% !important;
+  }
+
+  /* Iframe videos */
+  video,
+  embed,
+  iframe {
+    width: 50vw;
+    height: 28.125vw; /* 100/56.25 = 560/315 = 1.778 */
+    background: gray;
+    margin: 2em auto;
+    display: block;
+    box-shadow: 0px 0px 20px #000;
+    border: 0 none;
+  }
+
+  /* Iframe videos */
+  .latest-topic-list-item .topic-stats {
+    position: relative;
+  }
+
+  /* Latest posters tumbnails on a topic */
+  .last-posters-wrapper {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .last-posters-wrapper img {
+    margin: 2px;
+    width: 2vw;
+    max-width: 40px;
+    min-width: 20px;
+  }
+  
+  #banner {
+      max-width: 100%;
+  }
+</style>
