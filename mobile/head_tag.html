@@ -11,7 +11,7 @@ iframe {
   padding-right: 0;
 }
 .topic-body {
-  
+
 }
 .topic-body .cooked {
   padding: 1em 0 0.25em 0;
@@ -30,4 +30,14 @@ iframe {
   display: block;
 }
 
+/*Fixes long links in posts to break.*/
+.topic-body .cooked li p {
+	margin-top: 8px;
+	margin-bottom: 8px;
+	white-space: pre-wrap;
+	font-family: inherit;
+	word-break: break-word;
+	overflow-wrap: break-word;
+	line-break: auto;
+}
 </style>
