@@ -43,7 +43,7 @@
     float: left;
     position: relative;
     border-top: 1px solid #76747445;
-   
+
   }
   .posts-wrapper {
     background-color: #272727;
@@ -54,7 +54,7 @@
     float: left;
     z-index: 2;
   }
-  
+
 
   /* Real name shown on post */
   .names span a {
@@ -125,7 +125,7 @@
 
   /* Post space adjustments */
   .topic-body .cooked {
-    
+
     font-size: 16px;
     color: rgb(181, 181, 181);
   }
@@ -289,8 +289,16 @@
     max-width: 40px;
     min-width: 20px;
   }
-  
+
   #banner {
       max-width: 100%;
+  }
+
+  /* Adjustments for grid */
+  .topic-thumbnails-grid tr.visited, .topic-thumbnails-masonry tr.visited {
+	  filter: brightness(0.75);
+  }
+  .topic-thumbnails-grid tr, .topic-thumbnails-masonry tr {
+	  filter: brightness(1.1);
   }
 </style>
