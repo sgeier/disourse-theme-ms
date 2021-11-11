@@ -300,11 +300,60 @@
 	  display: none;
   }
 
-  /* Adjustments for grid */
+  /* De-highlight visited posts. */
   .topic-thumbnails-grid tr.visited, .topic-thumbnails-masonry tr.visited {
 	  filter: brightness(0.75);
   }
   .topic-thumbnails-grid tr, .topic-thumbnails-masonry tr {
 	  filter: brightness(1.1);
   }
+  /* Move poster name down and avoid cut off */
+  .topic-thumbnails-grid.topic-list .posters, .topic-thumbnails-masonry.topic-list .posters {
+	  min-height: 32px;
+	  place-items: flex-end;
+  }
+  /* Move topics created time up */
+  .topic-thumbnails-grid .num.activity a, .topic-thumbnails-masonry .num.activity a {
+	  padding: 0;
+	  margin-top: revert;
+  }
 </style>
+
+<!-- Show Messages/Notifications in top navigation -->
+<script type="text/discourse-plugin" version="0.8">
+	api.addNavigationBarItem({
+		name: "messages",
+		displayName: "Messages (0)",
+		href: "/my/messages",
+		title: "Messages"
+	})
+	api.addNavigationBarItem({
+		name: "notifications",
+		displayName: `Notifications (0)`,
+		href: "/my/notifications",
+		title: "Notifications"
+	})
+
+	async function getNotifications() {
+		const notificationsResponse = await fetch(`/notifications.json`);
+		const notificationsResult = await notificationsResponse.json();
+		return notificationsResult.notifications.filter(item => !item.read);
+	}
+	async function getMessages() {
+		const messagesResponse = await fetch(`/topics/private-messages/${Discourse.currentUser.username}.json`);
+		const messagesResult = await messagesResponse.json();
+		return messagesResult.topic_list.topics.filter(topic => topic.unseen);
+	}
+
+	// Update badges number when on homepage.
+	api.onPageChange((url) => {
+		if (url === "/") {
+			getNotifications().then(notifications => {
+				$('[title="Notifications"] > a').text(`Notifications (${notifications.length})`);
+			});
+			getMessages().then(messages => {
+				$('[title="Messages"] > a').text(`Messages (${messages.length})`);
+			});
+		}
+	});
+</script>
