@@ -354,7 +354,7 @@
         later(() => {
           if (this.element) {
             const linkInput = this.element.querySelector("#share-link input");
-            const userSuffix = this.link.match(/\?u[A-Z=])\w+/)[0]; // Remove the ?u=jonndoe part
+            const userSuffix = this.link.match(/\?u[A-Z=])\w+/)[1]; // Remove the ?u=jonndoe part
             linkInput.value = this.link.replace(userSuffix, "");
             if (!this.site.mobileView) {
               // if the input is auto-focused on mobile, iOS requires two taps of the copy button
