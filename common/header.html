@@ -346,6 +346,27 @@
 
 </style>
 
+<!-- Remove the ?u=jonndoe part from share link -->
+<script type="text/discourse-plugin" version="0.8">
+    api.modifyClass("component:share-popup", {
+     _focusUrl() {
+        // Wait for the fade-in transition to finish before selecting the link:
+        later(() => {
+          if (this.element) {
+            const linkInput = this.element.querySelector("#share-link input");
+            const userSuffix = this.link.match(/\?u[A-Z=])\w+/)[0]; // Remove the ?u=jonndoe part
+            linkInput.value = this.link.replace(userSuffix, "");
+            if (!this.site.mobileView) {
+              // if the input is auto-focused on mobile, iOS requires two taps of the copy button
+              linkInput.setSelectionRange(0, this.link.length);
+              linkInput.focus();
+            }
+          }
+        }, 200);
+      },
+    });
+</script>
+
 <!-- Show Messages/Notifications in top navigation -->
 <script type="text/discourse-plugin" version="0.8">
 	api.addNavigationBarItem({
