@@ -1,382 +1,411 @@
 <!-- Google Auth JS -->
 <script src="https://apis.google.com/js/api.js" id="gapiScript"></script>
 <!-- include external CSS for code highlighting -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/hybrid.min.css" integrity="sha512-ZVy0y7AnokL/xGtaRaWRgLYjhywJZdJwVFWXW9oihOpDIochH8JF0xWFK+Y1WJ5wTn3rn9LPZRFjxObuzvQUaQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/hybrid.min.css"
+      integrity="sha512-ZVy0y7AnokL/xGtaRaWRgLYjhywJZdJwVFWXW9oihOpDIochH8JF0xWFK+Y1WJ5wTn3rn9LPZRFjxObuzvQUaQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap");
 </style>
 <style>
-  html,
-  body {
-    font-family: "Montserrat", sans-serif !important;
-  }
+    html,
+    body {
+        font-family: "Montserrat", sans-serif !important;
+    }
 
-  #main-outlet {
-    width: 100%;
-    height: 100%;
-    flex: 1 1;
-    box-sizing: border-box;
-  }
+    #main-outlet {
+        width: 100%;
+        height: 100%;
+        flex: 1 1;
+        box-sizing: border-box;
+    }
 
-  /* Setting max width on all forum layout */
-  .wrap {
-    max-width: 1472px;
-  }
-  .wrap {
-    margin-right: auto;
-    margin-left: auto;
-    padding: 0 8px;
-  }
+    /* Setting max width on all forum layout */
+    .wrap {
+        max-width: 1472px;
+    }
 
-  /* Moon Logo */
-  .d-header #site-logo {
-    height: 60px;
-  }
+    .wrap {
+        margin-right: auto;
+        margin-left: auto;
+        padding: 0 8px;
+    }
 
-  /* Top alerts */
-  .alert {
-    border-radius: 4px;
-  }
+    /* Moon Logo */
+    .d-header #site-logo {
+        height: 60px;
+    }
 
-  /* Post layout */
-  .topic-body {
-    padding: 12px 6px 12px 6px;
-    float: left;
-    position: relative;
-    border-top: 1px solid #76747445;
+    /* Top alerts */
+    .alert {
+        border-radius: 4px;
+    }
 
-  }
-  .posts-wrapper {
-    background-color: #272727;
-  }
-  .topic-avatar {
-    padding-top: 15px;
-    width: 45px;
-    float: left;
-    z-index: 2;
-  }
+    /* Post layout */
+    .topic-body {
+        padding: 12px 6px 12px 6px;
+        float: left;
+        position: relative;
+        border-top: 1px solid #76747445;
 
-  /* Real name shown on post */
-  .names span a {
-    color: #779db9;
-  }
+    }
 
-  nav.post-controls .show-replies {
-    font-weight: bold;
-  }
+    .posts-wrapper {
+        background-color: #272727;
+    }
 
-  /* Adjustments on post stats area */
-  .topic-map h4 {
-    margin: 0;
-    font-size: 10px;
-    line-height: 16px;
-    color: #7c7c80;
-  }
-  .topic-map .map .number {
-    font-size: 18px;
-    line-height: 24px;
-    color: #fff;
-  }
-  .topic-map .map .topic-map-post {
-    margin-top: 2px;
-  }
-  .topic-map .map .topic-map-post span.relative-date {
-    font-size: 12px;
-    line-height: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
+    .topic-avatar {
+        padding-top: 15px;
+        width: 45px;
+        float: left;
+        z-index: 2;
+    }
 
-  span.post-count {
-    color: #7c7c80;
-    background-color: #000;
-    opacity: 1;
-  }
+    /* Real name shown on post */
+    .names span a {
+        color: #779db9;
+    }
 
-  /* Large reply button on a post */
-  .post-controls .actions button.create {
-    border: 1px solid var(--primary-medium);
-    font-weight: bold;
-    border-radius: 3px;
-  }
+    nav.post-controls .show-replies {
+        font-weight: bold;
+    }
 
-  /* Radius on buttons */
-  .btn {
-    border-radius: 4px;
-  }
+    /* Adjustments on post stats area */
+    .topic-map h4 {
+        margin: 0;
+        font-size: 10px;
+        line-height: 16px;
+        color: #7c7c80;
+    }
 
-  /* User mentions */
-  a.mention,
-  a.mention-group {
-    transition: all 0.15s ease;
-    padding: 2px 6px;
-    color: #fdfdfd;
-    background: #105ba5;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 0.93em;
-  }
-  a.mention:hover {
-    text-decoration: underline;
-    color: #105ba5;
-    background: #fdfdfd;
-  }
+    .topic-map .map .number {
+        font-size: 18px;
+        line-height: 24px;
+        color: #fff;
+    }
 
-  /* Post space adjustments */
-  .topic-body .cooked {
+    .topic-map .map .topic-map-post {
+        margin-top: 2px;
+    }
 
-    font-size: 16px;
-    color: rgb(181, 181, 181);
-  }
+    .topic-map .map .topic-map-post span.relative-date {
+        font-size: 12px;
+        line-height: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 
-  .topic-body .cooked li p {
-    margin-top: 8px;
-    margin-bottom: 8px;
-  }
+    span.post-count {
+        color: #7c7c80;
+        background-color: #000;
+        opacity: 1;
+    }
 
-  .post-menu-area {
-    margin-top: 12px;
-  }
+    /* Large reply button on a post */
+    .post-controls .actions button.create {
+        border: 1px solid var(--primary-medium);
+        font-weight: bold;
+        border-radius: 3px;
+    }
 
-  /* Primary buttons */
-  .btn-yellow,
-  .btn-primary {
-    color: #fff;
-    background: #779db9;
-    border-color: #779db9;
-  }
-  .btn-primary .d-icon {
-    color: inherit;
-    margin-right: 0.45em;
-    transition: color 0.25s;
-  }
+    /* Radius on buttons */
+    .btn {
+        border-radius: 4px;
+    }
 
-  /* Navigation button on homepage */
-  .nav-pills > li > a {
-    border-radius: 4px;
-  }
+    /* User mentions */
+    a.mention,
+    a.mention-group {
+        transition: all 0.15s ease;
+        padding: 2px 6px;
+        color: #fdfdfd;
+        background: #105ba5;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 0.93em;
+    }
 
-  .nav-pills > li > a:hover {
-    color: #fff;
-    background-color: #779cb785;
-  }
+    a.mention:hover {
+        text-decoration: underline;
+        color: #105ba5;
+        background: #fdfdfd;
+    }
 
-  .nav-pills > li.active > a,
-  .nav-pills > li > a.active {
-    color: #fff;
-    background-color: #779db9;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
+    /* Post space adjustments */
+    .topic-body .cooked {
 
-  /* Restricting code blocks in width */
-  pre code {
-    max-width: 1170px;
-  }
+        font-size: 16px;
+        color: rgb(181, 181, 181);
+    }
 
-  /* Making overlays for menus darker for better contrast */
-  .select-kit.is-expanded .select-kit-body,
-  .menu-panel {
-    background: #191919;
-  }
+    .topic-body .cooked li p {
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
 
-  /* Latest topics on front page */
-  .latest-topic-list-item {
-    padding: 0.66em;
-  }
+    .post-menu-area {
+        margin-top: 12px;
+    }
 
-  /* Post styles */
-  .cooked a:not(.mention),
-  .d-editor-preview a:not(.mention) {
-    color: #698fb1;
+    /* Primary buttons */
+    .btn-yellow,
+    .btn-primary {
+        color: #fff;
+        background: #779db9;
+        border-color: #779db9;
+    }
 
-  }
-  .cooked a:not(.mention):hover,
-  .d-editor-preview a:not(.mention):hover {
-    text-decoration: underline;
-    color: #779db9;
-  }
-  .cooked strong {
-    color: #b3b3b3;
-  }
+    .btn-primary .d-icon {
+        color: inherit;
+        margin-right: 0.45em;
+        transition: color 0.25s;
+    }
 
-  /* Hiding username next to real name in post */
-  .second.username {
-    display: none;
-  }
+    /* Navigation button on homepage */
+    .nav-pills > li > a {
+        border-radius: 4px;
+    }
 
-  .small-action {
-    display: flex;
-    align-items: center;
-    max-width: initial;
-    border-top: 1px solid var(--primary-low);
-  }
+    .nav-pills > li > a:hover {
+        color: #fff;
+        background-color: #779cb785;
+    }
 
-  /* Heart icon to like a post */
-  button.like.d-hover {
-    background: transparent !important;
-  }
+    .nav-pills > li.active > a,
+    .nav-pills > li > a.active {
+        color: #fff;
+        background-color: #779db9;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 
-  /* Topic overview stats on first post */
-  .topic-map .map:first-of-type {
-    padding: 5px;
-    background: var(--blend-primary-secondary-5);
-    border-radius: 4px;
-  }
+    /* Restricting code blocks in width */
+    pre code {
+        max-width: 1170px;
+    }
 
-  /* Quotes */
-  aside.quote .title {
-    border-left: 5px solid #595959;
-    background-color: #424242;
-    color: #bdbdbd;
-    padding: 12px 12px 1px 12px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-  }
-  aside.quote .title,
-  aside.quote blockquote {
-    border-left-color: #779db9;
-    background-color: #232323;
-  }
-  aside.quote .title {
-    border-radius: 4px 4px 0 0;
-  }
-  aside.quote blockquote {
-    border-radius: 0 0 4px 4px;
-  }
+    /* Making overlays for menus darker for better contrast */
+    .select-kit.is-expanded .select-kit-body,
+    .menu-panel {
+        background: #191919;
+    }
 
-  /* Quotes posts */
-  .embedded-posts {
-    background-color: #232323;
-    background-clip: content-box;
-    width: 80% !important;
-  }
+    /* Latest topics on front page */
+    .latest-topic-list-item {
+        padding: 0.66em;
+    }
 
-  /* Iframe videos */
-  video,
-  embed,
-  iframe {
-    width: 50vw;
-    height: 28.125vw; /* 100/56.25 = 560/315 = 1.778 */
-    background: gray;
-    margin: 2em auto;
-    display: block;
-    box-shadow: 0px 0px 20px #000;
-    border: 0 none;
-  }
+    /* Post styles */
+    .cooked a:not(.mention),
+    .d-editor-preview a:not(.mention) {
+        color: #698fb1;
 
-  /* Iframe videos */
-  .latest-topic-list-item .topic-stats {
-    position: relative;
-  }
+    }
 
-  /* Latest posters tumbnails on a topic */
-  .last-posters-wrapper {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 50px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
+    .cooked a:not(.mention):hover,
+    .d-editor-preview a:not(.mention):hover {
+        text-decoration: underline;
+        color: #779db9;
+    }
 
-  .last-posters-wrapper img {
-    margin: 2px;
-    width: 2vw;
-    max-width: 40px;
-    min-width: 20px;
-  }
+    .cooked strong {
+        color: #b3b3b3;
+    }
 
-  #banner {
-      max-width: 100%;
-  }
+    /* Hiding username next to real name in post */
+    .second.username {
+        display: none;
+    }
 
-  /* Hide bottom Flag button at the end of topic */
-  #topic-footer-button-flag,
-  .select-kit-row.flag-topic {
-	  display: none;
-  }
+    .small-action {
+        display: flex;
+        align-items: center;
+        max-width: initial;
+        border-top: 1px solid var(--primary-low);
+    }
 
-  /* Adjustments for Topics Overview */
-  /* De-highlight visited posts. */
-  .topic-thumbnails-grid tr.visited, .topic-thumbnails-masonry tr.visited {
-      filter: brightness(0.75);
-  }
+    /* Heart icon to like a post */
+    button.like.d-hover {
+        background: transparent !important;
+    }
 
-  .topic-thumbnails-grid tr, .topic-thumbnails-masonry tr {
-      filter: brightness(1.1);
-  }
+    /* Topic overview stats on first post */
+    .topic-map .map:first-of-type {
+        padding: 5px;
+        background: var(--blend-primary-secondary-5);
+        border-radius: 4px;
+    }
 
-  /* Move poster name down and avoid cut off */
-  .topic-thumbnails-grid.topic-list .posters, .topic-thumbnails-masonry.topic-list .posters {
-      min-height: 32px;
-      place-items: flex-end;
-  }
+    /* Quotes */
+    aside.quote .title {
+        border-left: 5px solid #595959;
+        background-color: #424242;
+        color: #bdbdbd;
+        padding: 12px 12px 1px 12px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+    }
 
-  /* Move topics created time up */
-  .topic-thumbnails-grid .num.activity a, .topic-thumbnails-masonry .num.activity a {
-      padding: 0;
-      margin-top: revert;
-  }
+    aside.quote .title,
+    aside.quote blockquote {
+        border-left-color: #779db9;
+        background-color: #232323;
+    }
 
-  /* Vignettes on thumbs */
-  .topic-list-thumbnail.has-thumbnail {
-      position: relative;
-  }
+    aside.quote .title {
+        border-radius: 4px 4px 0 0;
+    }
 
-  .topic-list-thumbnail.has-thumbnail::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 1;
-      z-index: 3;
-      background: none;
-      display: block;
-      box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.8) inset;
-      pointer-events: none;
-  }
-  /* Hide archived topics. */
-  .topic-list-item.archived {
-      display: none;
-  }
+    aside.quote blockquote {
+        border-radius: 0 0 4px 4px;
+    }
 
-  /* Slightly reduce line height on topic headlines in grid */
-  .topic-list .topic-list-data {
-      line-height: var(--line-height-medium);
-  }
-  /* Adjust badges in grid to be inline with sidebar. */
-  .topic-list .badge-notification.unread-posts {
-      position: relative;
-      top: 0;
-      margin-right: 6px;
-      padding: 0;
-      padding-left: 0.2em;
-      padding-right: 0.2em;
-      line-height: 18px;
-      height: 16px;
-      min-width: 16px;
-      color: var(--secondary);
-      font-size: 12px;
-      font-weight: bold;
-      text-align: center;
-      background-color: var(--primary-low-mid-or-secondary-low);
-  }
+    /* Quotes posts */
+    .embedded-posts {
+        background-color: #232323;
+        background-clip: content-box;
+        width: 80% !important;
+    }
 
-  /*Enlarge replay area.*/
-  @media only screen and (min-width: 1780px) {
-      #reply-control {
-          max-width: 2000px;
-      }
-  }
+    /* Iframe videos */
+    video,
+    embed,
+    iframe {
+        width: 50vw;
+        height: 28.125vw; /* 100/56.25 = 560/315 = 1.778 */
+        background: gray;
+        margin: 2em auto;
+        display: block;
+        box-shadow: 0px 0px 20px #000;
+        border: 0 none;
+    }
+
+    /* Iframe videos */
+    .latest-topic-list-item .topic-stats {
+        position: relative;
+    }
+
+    /* Latest posters tumbnails on a topic */
+    .last-posters-wrapper {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 50px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .last-posters-wrapper img {
+        margin: 2px;
+        width: 2vw;
+        max-width: 40px;
+        min-width: 20px;
+    }
+
+    #banner {
+        max-width: 100%;
+    }
+
+    /* Hide bottom Flag button at the end of topic */
+    #topic-footer-button-flag,
+    .select-kit-row.flag-topic {
+        display: none;
+    }
+
+    /* Adjustments for Topics Overview */
+    /* De-highlight visited posts. */
+    .topic-thumbnails-grid tr.visited, .topic-thumbnails-masonry tr.visited {
+        filter: brightness(0.75);
+    }
+
+    .topic-thumbnails-grid tr, .topic-thumbnails-masonry tr {
+        filter: brightness(1.1);
+    }
+
+    /* Move poster name down and avoid cut off */
+    .topic-thumbnails-grid.topic-list .posters, .topic-thumbnails-masonry.topic-list .posters {
+        min-height: 32px;
+        place-items: flex-end;
+    }
+
+    /* Move topics created time up */
+    .topic-thumbnails-grid .num.activity a, .topic-thumbnails-masonry .num.activity a {
+        padding: 0;
+        margin-top: revert;
+    }
+
+    /* Vignettes on thumbs */
+    .topic-list-thumbnail.has-thumbnail {
+        position: relative;
+    }
+
+    .topic-list-thumbnail.has-thumbnail::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        z-index: 3;
+        background: none;
+        display: block;
+        box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.8) inset;
+        pointer-events: none;
+    }
+
+    /* Hide archived topics. */
+    .topic-list-item.archived {
+        display: none;
+    }
+
+    /* Slightly reduce line height on topic headlines in grid */
+    .topic-list .topic-list-data {
+        line-height: var(--line-height-medium);
+    }
+
+    /* Adjust badges in grid to be inline with sidebar. */
+    .topic-list .badge-notification.unread-posts {
+        position: relative;
+        top: 0;
+        margin-right: 6px;
+        padding: 0;
+        padding-left: 0.2em;
+        padding-right: 0.2em;
+        line-height: 18px;
+        height: 16px;
+        min-width: 16px;
+        color: var(--secondary);
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+        background-color: var(--primary-low-mid-or-secondary-low);
+    }
+
+    /* Clean headline and categories */
+    .topic-thumbnails-grid .main-link, .topic-thumbnails-masonry .main-link {
+        justify-content: space-between;
+
+    }
+    .main-link .link-top-line {
+        flex-grow: 1;
+    }
+    .main-link .link-bottom-line {
+        margin-top: 0.4em;
+    }
+
+    /*Enlarge replay area.*/
+    @media only screen and (min-width: 1780px) {
+        #reply-control {
+            max-width: 2000px;
+        }
+    }
 </style>
 
 <!-- Remove the ?u=jonndoe part from share link -->
 <script type="text/discourse-plugin" version="0.8">
-    const { later } = require("@ember/runloop");
+    const {later} = require("@ember/runloop");
     api.modifyClass("component:share-popup", {
         _focusUrl() {
             later(() => {
@@ -397,39 +426,40 @@
 
 <!-- Show Messages/Notifications in top navigation -->
 <script type="text/discourse-plugin" version="0.8">
-	api.addNavigationBarItem({
-		name: "messages",
-		displayName: "Messages (0)",
-		href: "/my/messages",
-		title: "Messages"
-	})
-	api.addNavigationBarItem({
-		name: "notifications",
-		displayName: `Notifications (0)`,
-		href: "/my/notifications",
-		title: "Notifications"
-	})
+    api.addNavigationBarItem({
+        name: "messages",
+        displayName: "Messages (0)",
+        href: "/my/messages",
+        title: "Messages"
+    })
+    api.addNavigationBarItem({
+        name: "notifications",
+        displayName: `Notifications (0)`,
+        href: "/my/notifications",
+        title: "Notifications"
+    })
 
-	async function getNotifications() {
-		const notificationsResponse = await fetch(`/notifications.json`);
-		const notificationsResult = await notificationsResponse.json();
-		return notificationsResult.notifications.filter(item => !item.read);
-	}
-	async function getMessages() {
-		const messagesResponse = await fetch(`/topics/private-messages/${Discourse.currentUser.username}.json`);
-		const messagesResult = await messagesResponse.json();
-		return messagesResult.topic_list.topics.filter(topic => topic.unseen);
-	}
+    async function getNotifications() {
+        const notificationsResponse = await fetch(`/notifications.json`);
+        const notificationsResult = await notificationsResponse.json();
+        return notificationsResult.notifications.filter(item => !item.read);
+    }
 
-	// Update badges number when on homepage.
-	api.onPageChange((url) => {
-		if (url === "/") {
-			getNotifications().then(notifications => {
-				$('[title="Notifications"] > a').text(`Notifications (${notifications.length})`);
-			});
-			getMessages().then(messages => {
-				$('[title="Messages"] > a').text(`Messages (${messages.length})`);
-			});
-		}
-	});
+    async function getMessages() {
+        const messagesResponse = await fetch(`/topics/private-messages/${Discourse.currentUser.username}.json`);
+        const messagesResult = await messagesResponse.json();
+        return messagesResult.topic_list.topics.filter(topic => topic.unseen);
+    }
+
+    // Update badges number when on homepage.
+    api.onPageChange((url) => {
+        if (url === "/") {
+            getNotifications().then(notifications => {
+                $('[title="Notifications"] > a').text(`Notifications (${notifications.length})`);
+            });
+            getMessages().then(messages => {
+                $('[title="Messages"] > a').text(`Messages (${messages.length})`);
+            });
+        }
+    });
 </script>
