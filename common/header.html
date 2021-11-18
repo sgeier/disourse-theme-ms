@@ -344,6 +344,28 @@
       display: none;
   }
 
+  /* Slightly reduce line height on topic headlines in grid */
+  .topic-list .topic-list-data {
+      line-height: var(--line-height-medium);
+  }
+  /* Adjust badges in grid to be inline with sidebar. */
+  .topic-list .badge-notification.unread-posts {
+      position: relative;
+      top: 0;
+      margin-right: 6px;
+      padding: 0;
+      padding-left: 0.2em;
+      padding-right: 0.2em;
+      line-height: 18px;
+      height: 16px;
+      min-width: 16px;
+      color: var(--secondary);
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      background-color: var(--primary-low-mid-or-secondary-low);
+  }
+
   /*Enlarge replay area.*/
   @media only screen and (min-width: 1780px) {
       #reply-control {
